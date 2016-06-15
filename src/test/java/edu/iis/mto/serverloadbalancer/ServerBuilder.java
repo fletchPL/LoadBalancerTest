@@ -3,6 +3,7 @@ package edu.iis.mto.serverloadbalancer;
 public class ServerBuilder implements Builder<Server>{
 
 	private int capacity;
+	private double initalLoad;
 	public ServerBuilder withCapacity(int capacity) {
 		// TODO Auto-generated method stub
 		this.capacity = capacity;
@@ -16,5 +17,10 @@ public class ServerBuilder implements Builder<Server>{
 	public static ServerBuilder server() {
 		// TODO Auto-generated method stub
 		return new ServerBuilder();
+	}
+	public ServerBuilder wothCurrentLoadOf(double initalLoad) {
+		
+		this.initalLoad = initalLoad;
+		return null;
 	}
 }
