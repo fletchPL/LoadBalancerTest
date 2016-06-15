@@ -1,4 +1,7 @@
 package edu.iis.mto.serverloadbalancer;
+import java.util.ArrayList;
+import java.awt.List;
+
 
 import org.hamcrest.Matcher;
 
@@ -8,6 +11,11 @@ public class Server {
 	public double currentLoadPercetage;
 	public int capacity;
 
+	
+	private ArrayList<Vm> vms = new ArrayList<Vm>();
+	
+	
+	
 	public boolean contains(Vm theVm) {
 	
 		return true;
@@ -20,12 +28,15 @@ public class Server {
 
 	public void addVm(Vm vm) {
 	 currentLoadPercetage = (double)vm.size / (double)capacity * MAXIMUM_LOAD;
+	 this.vms.add(vm);
 	}
 
 	public int countVms() {
 		
-		return 0;
+		return vms.size();
 	}
+
+	
 
 	
 
