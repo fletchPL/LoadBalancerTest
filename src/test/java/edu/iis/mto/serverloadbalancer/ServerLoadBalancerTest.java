@@ -25,7 +25,7 @@ public void balancingServerWithNoVms_serverStayEmpty()
 
 @Test // test 2
 public void balancingOneServerWithOneSlotCapacity_andOneVm_fillsServerWithTheVm(){
-Server theServer = a(ServerBuilder.server().withCapacity(1));
+	Server theServer = a(ServerBuilder.server().withCapacity(1));
 	
 	Vm theVm = a(VmBuilder.vm().ofSize(1));
 	balancing(aServerListWith(theServer), aVmsListWiht(theVm));
@@ -34,6 +34,19 @@ Server theServer = a(ServerBuilder.server().withCapacity(1));
 	assertThat(theServer, CurrentLoadPercentageMatcher.hasLoadPercentageOf(100.0d));
 	assertThat("Server should contain the vm", theServer.contains(theVm));
 
+}
+@Test
+//test 3
+public void balancingOneServerWithTenSlotsCapacity_andOneSlotVm_fillsTheServerWithTenPercent()
+{
+	Server theServer = a(ServerBuilder.server().withCapacity(10));
+	
+	Vm theVm = a(VmBuilder.vm().ofSize(1));
+	balancing(aServerListWith(theServer), aVmsListWiht(theVm));
+	
+	
+	assertThat(theServer, CurrentLoadPercentageMatcher.hasLoadPercentageOf(10.0d));
+	assertThat("Server should contain the vm", theServer.contains(theVm));
 }
 
 private void balancing(Server[] servers, Vm[] vms) {
@@ -54,6 +67,9 @@ private Server[] aServerListWith(Server... servers) {
 	// TODO Auto-generated method stub
 	return servers;
 }
+
+
+
 
 
 private Vm[] aVmsListWiht(Vm... vms) {
