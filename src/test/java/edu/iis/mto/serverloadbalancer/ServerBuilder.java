@@ -13,4 +13,8 @@ public class ServerBuilder {
 		return new Server();
 	}
 
+	public static ServerBuilder server() {
+		// TODO Auto-generated method stub
+		return new ServerBuilder();
+	}
 }

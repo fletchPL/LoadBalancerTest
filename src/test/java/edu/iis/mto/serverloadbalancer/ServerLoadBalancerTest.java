@@ -16,18 +16,13 @@ public class ServerLoadBalancerTest {
 @Test
 public void balancingServerWithNoVms_serverStayEmpty()
 {
-	Server theServer = a(server().withCapacity(1));
+	Server theServer = a(ServerBuilder.server().withCapacity(1));
 	
 	balancing(aServerListWith(theServer), anEmptyListOfVms());
 	
-	assertThat(theServer, hasLoadPercentageOf(0.0d));
+	assertThat(theServer, CurrentLoadPercentageMatcher.hasLoadPercentageOf(0.0d));
 }
 
-private Matcher<? super Server> hasLoadPercentageOf(double expectedLoadPercentage) {
-	// TODO Auto-generated method stub
-	//koment
-	return new CurrentLoadPercentageMatcher(expectedLoadPercentage);
-}
 
 private void balancing(Server[] servers, Vm[] vms) {
 	new ServerLoadBalancer().balance(servers,vms);
@@ -49,8 +44,5 @@ private Server[] aServerListWith(Server... servers) {
 	return servers;
 }
 
-private ServerBuilder server() {
-	// TODO Auto-generated method stub
-	return new ServerBuilder();
-}
+
 }
