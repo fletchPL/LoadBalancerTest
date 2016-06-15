@@ -12,4 +12,9 @@ public class Server {
 		return true;
 	}
 
+	public Server(int capacity) {
+		super();
+		this.capacity = capacity;
+	}
+
 }
