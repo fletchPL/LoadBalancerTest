@@ -30,7 +30,7 @@ Server theServer = a(ServerBuilder.server().withCapacity(1));
 	balancing(aServerListWith(theServer), aVmsListWiht(theVm));
 	
 	
-	assertThat(theServer, CurrentLoadPercentageMatcher.hasLoadPercentageOf(10.0d));
+	assertThat(theServer, CurrentLoadPercentageMatcher.hasLoadPercentageOf(100.0d));
 	assertThat("Server should contain the vm", theServer.contains(theVm));
 
 }
