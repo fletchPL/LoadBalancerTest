@@ -10,8 +10,15 @@ public class ServerBuilder implements Builder<Server>{
 		return this;
 	}
 	public Server build() {
-		// TODO Auto-generated method stub
-		return new Server(capacity);
+		Server server = new Server(capacity); 
+		if(initalLoad > 0 )
+		{
+			int initialVmSize = (int)(initalLoad / (double)capacity * 100.0d);
+			Vm initialVm = VmBuilder.vm().ofSize(initialVmSize).build();
+			server.addVm(initialVm);
+		}
+		
+		return server; 
 	}
 
 	public static ServerBuilder server() {
