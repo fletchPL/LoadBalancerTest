@@ -61,18 +61,13 @@ public void balancingTheServerWithEnoughRoom_fillsTheServerWithAllVms()
 	balancing(aServerListWith(theServer), aVmsListWiht(theFirstVm, theSecendVm));
 	
 	
-	assertThat(theServer, hasAVmsCountOf(2));
+	assertThat(theServer, ServerVmsCoutMatcher.hasAVmsCountOf(2));
 	assertThat("Server should contain the FirstVm", theServer.contains(theFirstVm ));
 	assertThat("Server should contain the SecondVm ", theServer.contains(theSecendVm ));
 }
 
 
 
-
-private Matcher<? super Server> hasAVmsCountOf(int expectedVmsCount) {
-	
-	return new ServerVmsCoutMatcher(expectedVmsCount);
-}
 
 private void balancing(Server[] servers, Vm[] vms) {
 	new ServerLoadBalancer().balance(servers,vms);
